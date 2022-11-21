@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+:root {
+  --rounded: 0.45rem;
+  --border-color: rgba(204, 204, 204, 0.753);
+  --background: #fefefe;
+  --select-box-color: #000000;
+  --text-clr: #ffffff;
+  --option-hover-clr: #249ebb;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--background)
+}
+
+input[type='radio'] {
+    display: none;
+}
+
+.select {
+    position: relative;
+    width: 25rem;
+}
+
+
+.selected {
+    position: relative;
+    background-color: var(--select-box-color);
+    color: var(--text-clr);
+    padding: 12px 24px;
+    border-radius: var(--rounded);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.selected::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url('./chevron-down.svg');
+    background-size: contain;
+}
+
+
+.options {
+    position: absolute;
+    top: calc(100% + 4px);
+    background: var(--select-box-color);
+    color: var(--text-clr);
+    border-radius: var(--rounded);
+    border: 2px solid var(--border-color);
+    width: 100%;
+    max-height: 0px;
+    overflow-y: hidden;
+    padding: 8px;
+    opacity: 0;
+}
+
+.options.active {
+    max-height: 200px;
+    overflow-y: scroll;
+    opacity: 1;
+}
+
+.options.active + .selected::after {
+    transform: rotateX(180deg) translateY(50%);
+}
+
+.options::-webkit-scrollbar {
+    width: .375rem;
+}
+
+.options::-webkit-scrollbar-thumb {
+    background-color: var(--option-hover-clr);
+    border-radius: 5px;
+    
+}
+
+.option {
+    display: block;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.option:hover {
+    background-color: var(--option-hover-clr);
+}
+
+.current {
+    background-color: var(--option-hover-clr);
+    
+}
